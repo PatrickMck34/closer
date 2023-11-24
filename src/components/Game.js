@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { useEffect } from 'react';
 const room1 = `url("https://wallpapercave.com/wp/wp7517920.jpg")`
-const room2 = `url("https://i.etsystatic.com/42685745/r/il/f7c78c/4908711238/il_fullxfull.4908711238_ifxx.jpg")`
-const room3 = `url("https://cdn1.epicgames.com/ue/product/Screenshot/Screenshot23-1920x1080-faad1d637e8cf81a9fcbc32994ce875b.jpg?resize=1&w=1920")`
+const room3 = `url("https://i.etsystatic.com/42685745/r/il/f7c78c/4908711238/il_fullxfull.4908711238_ifxx.jpg")`
+const room2 = `url("https://cdn1.epicgames.com/ue/product/Screenshot/Screenshot23-1920x1080-faad1d637e8cf81a9fcbc32994ce875b.jpg?resize=1&w=1920")`
 let selector = room1
 let room = 0
 let key = 0
@@ -18,7 +18,7 @@ function KeyUp() {
 function  handleRoomChange (event) {
     switch (selector){
         case room1: {
-            alert("You enter the room")
+            
             selector = room2
             break;
         }
@@ -37,7 +37,7 @@ function  handleRoomChange (event) {
     function  handleRoomChange2 () {
         switch (selector){
             case room1: {
-              Game.x = 1000
+             Game.x = {x:1000}
                 break;
             }
             case room2: {
@@ -59,7 +59,7 @@ function  handleRoomChange (event) {
                         y: 350,
                         
                         interactiveAreas: [
-                            { x: 100, y: 100, width: 100, height:400,  action: () => handleRoomChange()},
+                            { x: 145, y: 100, width: 100, height:400,  action: () => handleRoomChange()},
                             { x: 950, y: 100, width: 100, height:400,  action: () => handleRoomChange2() }
                         ],
                         
@@ -134,13 +134,34 @@ function  handleRoomChange (event) {
                 ) : ( <div>
                     </div>
                 )}
+                
+                 
+                    
+                    
+                   
+                
+                 
+                    <div>
+                         <div className="h-24 flex justify-center text-center items-center">
+
+What is a Variable? 
+
+    </div>
+<div className="flex items-center justify-between w-96">
+
+    <button className="bg-green-800 w-36 border-2 h-48 font-semibold border-green-900 rounded-xl p-1 shadow-lg shadow-green-900" onClick={()=>KeyUp()}>A "named storage" for data</button>
+    <button className="bg-green-800 w-36 border-2 h-48 font-semibold border-green-900 rounded-xl p-1 shadow-lg shadow-green-900" >A condition that is likely to change</button>
+</div>
+                        </div>
+               
+                 
             </div>
                 </div>
             <div className="flex mt-[18em] text-red-600 ">LVL 1</div>
             </div>
-        );
-    }
-}
+                  )}
+                
+                }
 
 export default Game;
 
