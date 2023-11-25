@@ -20,6 +20,7 @@ function  handleRoomChange (event) {
         case room1: {
             
             selector = room2
+            KeyUp()
             break;
         }
         case room2: {
@@ -71,7 +72,7 @@ function  handleRoomChange (event) {
                             case 'ArrowUp':
                                 this.setState({ y: y - 15 });
                                 break;
-                                case 'ArrowDown':
+                                case 'spacebar':
                                     this.setState({ y: y + 15 });
                                     break;
                                     case 'a':
@@ -86,6 +87,7 @@ function  handleRoomChange (event) {
          for (let area of interactiveAreas) {
       if (x <= 155 && key >0 ) {
         handleRoomChange();
+        
         this.setState({ x: (this.state.x + 800), y: (this.state.y) });
       }
       if (x >= 1000  ) {
@@ -134,34 +136,83 @@ function  handleRoomChange (event) {
                 ) : ( <div>
                     </div>
                 )}
-                
-                 
-                    
-                    
-                   
-                
-                 
+                {(key >  1 ) ? (
                     <div>
-                         <div className="h-24 flex justify-center text-center items-center">
-
-What is a Variable? 
-
+                        <div>
+                             <div className="h-24 flex justify-center text-center items-center">
+    
+    What is a Variable? 
+    
+        </div>
+    <div className="flex items-center justify-between w-96">
+    
+        <button className="bg-green-800 w-36 border-2 h-48 font-semibold border-green-900 rounded-xl p-1 shadow-lg shadow-green-900" onClick={()=>KeyUp()}>A "named storage" for data</button>
+        <button className="bg-green-800 w-36 border-2 h-48 font-semibold border-green-900 rounded-xl p-1 shadow-lg shadow-green-900" >A condition that is likely to change</button>
     </div>
-<div className="flex items-center justify-between w-96">
-
-    <button className="bg-green-800 w-36 border-2 h-48 font-semibold border-green-900 rounded-xl p-1 shadow-lg shadow-green-900" onClick={()=>KeyUp()}>A "named storage" for data</button>
-    <button className="bg-green-800 w-36 border-2 h-48 font-semibold border-green-900 rounded-xl p-1 shadow-lg shadow-green-900" >A condition that is likely to change</button>
-</div>
-                        </div>
-               
-                 
-            </div>
+                            </div>
+                   
+                     
+                <div className="flex mt-[18em] text-red-600 ">LVL 1
                 </div>
-            <div className="flex mt-[18em] text-red-600 ">LVL 1</div>
-            </div>
-                  )}
+                </div>
+               
+               ): (
+                   <div></div>
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   )}
+                </div>
+                </div>
+                   </div>
+        )}}
+                class Projectile {
+                    constructor(x, y, direction, speed) {
+                        this.x = x;
+                        this.y = y;
+                        this.direction = direction;
+                        this.speed = speed;
+                    }
                 
+                    update() {
+                        // Update the position based on the direction and speed
+                        this.x += Math.cos(this.direction) * this.speed;
+                        this.y += Math.sin(this.direction) * this.speed;
+                    }
+                
+                    render(context) {
+                        // Draw the projectile on the given context
+                        context.beginPath();
+                        context.arc(this.x, this.y, 5, 0, Math.PI * 2);
+                        context.fill();
+                    }
                 }
+                
+                // In your game code:
+                
+                let projectiles = [];
+                
+                function fireProjectile(x, y, direction) {
+                    projectiles.push(new Projectile(x, y, direction, 5));
+                }
+                
+                function gameLoop(context) {
+                    // Update and render each projectile
+                    for (let projectile of projectiles) {
+                        projectile.update();
+                        projectile.render(context);
+                    }
+                
+                    // Call gameLoop again on the next frame
+                    requestAnimationFrame(() => gameLoop(context));
+                }
+                
+                // Start the game loop
+                gameLoop();
 
 export default Game;
 
